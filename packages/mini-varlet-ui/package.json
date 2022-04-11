@@ -1,0 +1,13 @@
+{
+  "name": "@mini-varlet/ui",
+  "version": "0.0.0",
+  "description": "mini varlet ui",
+  "scripts": {
+    "dev": "mini-varlet-cli dev"
+  },
+  "author": "ahqrt",
+  "license": "MIT",
+  "devDependencies": {
+    "@mini-varlet/cli": "workspace:*"
+  }
+}
