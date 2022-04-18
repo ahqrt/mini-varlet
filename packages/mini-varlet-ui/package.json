@@ -9,5 +9,10 @@
   "license": "MIT",
   "devDependencies": {
     "@mini-varlet/cli": "workspace:*"
+  },
+  "dependencies": {
+    "install": "^0.13.0",
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.14"
   }
 }

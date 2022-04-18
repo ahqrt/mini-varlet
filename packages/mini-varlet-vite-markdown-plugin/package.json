@@ -1,0 +1,11 @@
+{
+  "name": "@mini-varlet/vite-markdown-plugin",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "ahqrt",
+  "license": "MIT",
+  "dependencies": {
+    "markdown-it": "^12.3.2"
+  }
+}

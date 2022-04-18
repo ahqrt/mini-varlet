@@ -1,0 +1,1 @@
+declare module '@mini-varlet/vite-markdown-plugin'

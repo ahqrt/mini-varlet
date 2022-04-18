@@ -44,22 +44,63 @@ var vite_1 = require("vite");
 var vite_config_1 = __importDefault(require("../config/vite.config"));
 var fs_extra_1 = require("fs-extra");
 var constants_1 = require("../constants");
-function dev() {
+var consola_1 = __importDefault(require("consola"));
+var chokidar_1 = __importDefault(require("chokidar"));
+var compiler_routes_1 = require("../compiler/compiler-routes");
+var server = null;
+var watcher = chokidar_1.default.watch(constants_1.SITE);
+function startServer() {
     return __awaiter(this, void 0, void 0, function () {
-        var server;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    if (!server) return [3 /*break*/, 3];
+                    consola_1.default.info('Server already started');
+                    return [4 /*yield*/, watcher.close()];
+                case 1:
+                    _a.sent();
+                    return [4 /*yield*/, server.close()];
+                case 2:
+                    _a.sent();
+                    server = null;
+                    consola_1.default.info('Server closed... restarting');
+                    _a.label = 3;
+                case 3:
                     (0, fs_extra_1.removeSync)(constants_1.MINI_VARLET);
                     (0, fs_extra_1.copySync)(constants_1.SITE, constants_1.MINI_VARLET);
+                    return [4 /*yield*/, (0, compiler_routes_1.compileRoutes)()];
+                case 4:
+                    _a.sent();
                     return [4 /*yield*/, (0, vite_1.createServer)(vite_config_1.default)];
-                case 1:
+                case 5:
                     server = _a.sent();
                     return [4 /*yield*/, server.listen(8080)];
-                case 2:
+                case 6:
                     _a.sent();
                     server.printUrls();
                     return [2 /*return*/];
+            }
+        });
+    });
+}
+function dev() {
+    return __awaiter(this, void 0, void 0, function () {
+        var error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    return [4 /*yield*/, startServer()];
+                case 1:
+                    _a.sent();
+                    watcher
+                        .on('all', startServer);
+                    return [3 /*break*/, 3];
+                case 2:
+                    error_1 = _a.sent();
+                    consola_1.default.error(error_1);
+                    return [3 /*break*/, 3];
+                case 3: return [2 /*return*/];
             }
         });
     });
