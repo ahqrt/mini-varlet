@@ -5,7 +5,6 @@ module.exports = function markdownPlugin() {
     enforce: 'pre',
     transform(code, id) {
       if (id.endsWith('.md')) {
-        console.log('markdown-it', md().render(code))
         return {
           code: `<template>
 ${md().render(code)}
