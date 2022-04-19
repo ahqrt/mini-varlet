@@ -8,3 +8,5 @@ node_modules
 .DS_Store
 *.vsix
 package-lock.json
+site
+lib
