@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "mini varlet ui",
   "scripts": {
-    "dev": "mini-varlet-cli dev"
+    "dev": "mini-varlet-cli dev",
+    "build": "mini-varlet-cli build"
   },
   "author": "ahqrt",
   "license": "MIT",
