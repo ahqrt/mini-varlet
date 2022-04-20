@@ -14,4 +14,10 @@ program
   .description('Build the site')
   .action(build)
 
+program.on('command:*', ([cmd]) => {
+  program.outputHelp()
+  // logger.error(`\nUnknown command ${cmd}.\n`)
+  process.exitCode = 1
+})
+
 program.parse()
