@@ -8,13 +8,13 @@ import { compileRoutes } from '../compiler/compiler-routes'
 
 let server: ViteDevServer | null = null
 
-const watcher = chokidar.watch(SITE)
+let watcher: chokidar.FSWatcher | null = null
 
 async function startServer() {
   if (server) {
     consola.info('Server already started')
 
-    await watcher.close()
+    await watcher!.close()
     await server.close()
     server = null
     consola.info('Server closed... restarting')
@@ -30,6 +30,8 @@ async function startServer() {
 }
 
 export async function dev() {
+  watcher = chokidar.watch(SITE)
+
   try {
     await startServer()
     watcher
