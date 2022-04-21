@@ -1,5 +1,6 @@
 import { Command } from 'commander'
 import { build } from './commands/build'
+import { compile } from './commands/compile'
 import { dev } from './commands/dev'
 
 const program = new Command()
@@ -13,6 +14,11 @@ program
   .command('build')
   .description('Build the site')
   .action(build)
+
+program
+  .command('compile')
+  .description('Compile the site')
+  .action(compile)
 
 program.on('command:*', ([cmd]) => {
   program.outputHelp()
